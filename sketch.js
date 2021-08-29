@@ -34,8 +34,8 @@ function setup() {
 function initGameState() {
   snake = [
     new p5.Vector(cellSize * 4, cellSize * 4),
-    new p5.Vector(cellSize * +4 + cellSize, cellSize * 4),
-    new p5.Vector(cellSize * +4 + cellSize * 2, cellSize * +4),
+    new p5.Vector(cellSize * + 4 + cellSize, cellSize * 4),
+    new p5.Vector(cellSize * + 4 + cellSize * 2, cellSize * +4),
   ];
   dir = RIGHT;
   eaten = 0;
