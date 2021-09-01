@@ -3,7 +3,7 @@
 const cellSize = 20;
 const rows = 30; // rows >= 10
 const cols = 30; // cols >= 10
-let speed = 14;
+let speed = 12.5;
 
 const canvasWidth = cols * cellSize;
 const canvasHeight = rows * cellSize;
