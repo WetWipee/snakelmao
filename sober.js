@@ -4,6 +4,8 @@ const cellSize = 20;
 const rows = 30; // rows >= 10
 const cols = 30; // cols >= 10
 let speed = 12.5;
+const amountOfSquaresToGrowBy = 2;
+let linethickness = 2;
 
 const canvasWidth = cols * cellSize;
 const canvasHeight = rows * cellSize;
@@ -29,6 +31,7 @@ function setup() {
   createCanvas(canvasWidth, canvasHeight);
   initGameState();
   frameRate(speed);
+  randomcoloronce()
 }
 
 function initGameState() {
@@ -87,7 +90,7 @@ function drawGrid() {
 
 function drawSnakeEyes() {
   if (dir === RIGHT) {
-    fill("#fc0303");
+    fill("red");
     circle(
       snake[snake.length - 1].x + (cellSize / 4) * 3,
       snake[snake.length - 1].y + cellSize / 4,
@@ -100,7 +103,7 @@ function drawSnakeEyes() {
     );
   }
   if (dir === LEFT) {
-    fill("#fc0303");
+    fill("red");
     circle(
       snake[snake.length - 1].x + cellSize / 4,
       snake[snake.length - 1].y + cellSize / 4,
@@ -113,7 +116,7 @@ function drawSnakeEyes() {
     );
   }
   if (dir === UP) {
-    fill("#fc0303");
+    fill("red");
     circle(
       snake[snake.length - 1].x + cellSize / 4,
       snake[snake.length - 1].y + cellSize / 4,
@@ -126,7 +129,7 @@ function drawSnakeEyes() {
     );
   }
   if (dir === DOWN) {
-    fill("#fc0303");
+    fill("red");
     circle(
       snake[snake.length - 1].x + cellSize / 4,
       snake[snake.length - 1].y + (cellSize / 4) * 3,
@@ -141,40 +144,66 @@ function drawSnakeEyes() {
 }
 
 function drawSnake() {
-  stroke(1);
+  stroke(1)
   if (phase === GAME_OVER) {
     for (let i = 0; i <= snake.length - 1; i++) {
-      fill("red");
+      fill(random(200,255), random(0,100), random(20,150), 255);
+      strokeWeight(linethickness)
       square(snake[i].x, snake[i].y, cellSize);
     }
     textSize(cellSize * 1.6);
-    text("Game Over! Press r to restart.", 10, 30);
+    strokeWeight(5)
+    fill("red")
+    text("L, press r", cols * cellSize / 2 - cellSize * 3, rows * cellSize / 2);
   }
-
   if (phase === PLAYING) {
     for (let i = 0; i <= snake.length - 1; i++) {
       fill("green");
+      strokeWeight(linethickness)
       square(snake[i].x, snake[i].y, cellSize);
     }
   }
   if (phase === INIT) {
     for (let i = 0; i <= snake.length - 1; i++) {
       fill("green");
+      strokeWeight(linethickness)
       square(snake[i].x, snake[i].y, cellSize);
     }
   }
   if (phase === PAUSED) {
     for (let i = 0; i <= snake.length - 1; i++) {
-      fill("gold");
+      fill(random(230,255), random(190,240), 0, 255);
+      strokeWeight(linethickness)
       square(snake[i].x, snake[i].y, cellSize);
     }
   }
+  strokeWeight(1)
   fill("darkblue");
-  textSize(20);
-  text(eaten, canvasWidth - 47, canvasHeight - 40);
+  textSize(15);
+  text(eaten * amountOfSquaresToGrowBy + 3, canvasWidth - 35, canvasHeight - 30);
 }
+
+let randomcolor = [];
+let randomcolor2 = [];
+let randomcolorb = [];
+function randomcoloronce() {
+    randomcolor.pop()
+    randomcolor.pop()
+    randomcolor.push(new p5.Vector(random(255), random(255), random(255)))
+    randomcolor.push(255)
+    randomcolor2.pop()
+    randomcolor2.pop()
+    randomcolor2.push(new p5.Vector(random(100,255), random(175,255), random(100,255)))
+    randomcolor2.push(255)
+    randomcolorb.pop()
+    randomcolorb.pop()
+    randomcolorb.push(new p5.Vector(random(200,255), random(200,255), random(200,255)))
+    randomcolorb.push(255)
+}
+
 function drawApple() {
-  stroke(1);
+  stroke(1)
+  strokeWeight(linethickness);
   fill("red");
   square(apple[0].x, apple[0].y, cellSize);
 }
@@ -304,17 +333,16 @@ function checkCollisions() {
     phase = GAME_OVER;
   }
 }
+
+function growsnake(x) {
+    for (let i = 0; i < x; i++)
+        snake.unshift(new p5.Vector(snake[0].x, snake[0].y));
+}
+
 function checkApple() {
   if (snake[snake.length - 1].equals(apple[0])) {
-    if (dir === RIGHT) {
-      snake.unshift(new p5.Vector(snake[0].x - cellSize, snake[0].y));
-    } else if (dir === LEFT) {
-      snake.unshift(new p5.Vector(snake[0].x + cellSize, snake[0].y));
-    } else if (dir === UP) {
-      snake.unshift(new p5.Vector(snake[0].x, snake[0].y + cellSize));
-    } else if (dir === DOWN) {
-      snake.unshift(new p5.Vector(snake[0].x, snake[0].y - cellSize));
-    }
+    growsnake(amountOfSquaresToGrowBy)
+    randomcoloronce()
     randomApplePosition();
     eaten = eaten + 1;
   }
