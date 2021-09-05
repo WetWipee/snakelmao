@@ -237,27 +237,18 @@ function keyPressed() {
     }
     if (keyCode === LEFT_ARROW) {
       // console.log('◀');
-      if (dir === RIGHT) {
-      } else {
         pendingMovement.push(LEFT);
         dir = LEFT;
-      }
     }
     if (keyCode === UP_ARROW) {
       // console.log('▲');
-      if (dir === DOWN) {
-      } else {
         pendingMovement.push(UP);
         dir = UP;
-      }
     }
     if (keyCode === DOWN_ARROW) {
       // console.log('▼');
-      if (dir === UP) {
-      } else {
         pendingMovement.push(DOWN);
         dir = DOWN;
-      }
     }
   }
 }
