@@ -249,7 +249,6 @@ function keyPressed() {
         dir = DOWN;
     }
   }
-}
 
 function mousePressed() {
   if (phase === INIT) {
