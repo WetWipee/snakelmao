@@ -537,10 +537,5 @@ function updateCols(colsnew){
 }
 
 function updateGrowth(Growth){
-    clear()
-    cols = parseInt(colsnew)
-    canvasWidth = cols * cellSize;
-    canvasHeight = rows * cellSize;
-    phase = INIT;
-    setup();
+    amountOfSquaresToGrowBy = parseInt(Growth)
 }
