@@ -229,8 +229,6 @@ function keyPressed() {
   if (phase === PLAYING) {
     if (keyCode === RIGHT_ARROW) {
       // console.log('▶');
-      if (dir === LEFT) {
-      } else {
         pendingMovement.push(RIGHT);
         dir = RIGHT;
       }
