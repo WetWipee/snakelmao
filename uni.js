@@ -251,12 +251,12 @@ function keyPressed() {
     }
   }
   if (phase === INIT) {
-    if (keyCode === RIGHT_ARROW | keyCode === UP_ARROW | keyCode === DOWN_ARROW) {
+    if (keyCode === RIGHT_ARROW | keyCode === UP_ARROW | keyCode === DOWN_ARROW | keyCode === 68 | keyCode === 65 | keyCode === 87 | keyCode === 87) {
     phase = PLAYING
     }
   }
   if (phase === PLAYING) {
-    if (keyCode === RIGHT_ARROW) {
+    if (keyCode === RIGHT_ARROW | keyCode === 68) {
       // console.log('▶');
       if (dir === LEFT) {
       } else {
@@ -264,7 +264,7 @@ function keyPressed() {
         dir = RIGHT;
       }
     }
-    if (keyCode === LEFT_ARROW) {
+    if (keyCode === LEFT_ARROW | keyCode === 65) {
       // console.log('◀');
       if (dir === RIGHT) {
       } else {
@@ -272,7 +272,7 @@ function keyPressed() {
         dir = LEFT;
       }
     }
-    if (keyCode === UP_ARROW) {
+    if (keyCode === UP_ARROW | keyCode === 87) {
       // console.log('▲');
       if (dir === DOWN) {
       } else {
@@ -280,7 +280,7 @@ function keyPressed() {
         dir = UP;
       }
     }
-    if (keyCode === DOWN_ARROW) {
+    if (keyCode === DOWN_ARROW | keyCode === 83) {
       // console.log('▼');
       if (dir === UP) {
       } else {
