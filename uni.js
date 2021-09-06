@@ -1,4 +1,5 @@
 // dir array pending moves credit goes to sflanker
+  // discord server: 530329504766361610  discord user: 672554516624703500
 
 let cellSize = 13.5;
 let rows = 48; // rows >= 10
